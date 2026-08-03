@@ -1,0 +1,6 @@
+name = "blog-oauth"
+main = "worker.js"
+compatibility_date = "2026-08-03"
+
+[vars]
+GITHUB_CLIENT_ID = "Ov23li1R9cdCPpjGQBRN"
