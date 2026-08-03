@@ -9,10 +9,15 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "admin": "decap-server",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
     "astro": "^7.1.6"
+  },
+  "devDependencies": {
+    "decap-cms": "^3.15.1",
+    "decap-server": "^3.10.0"
   }
 }

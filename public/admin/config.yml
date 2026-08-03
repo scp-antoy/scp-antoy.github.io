@@ -1,0 +1,32 @@
+backend:
+  name: github
+  repo: scp-antoy/scp-antoy.github.io
+  branch: main
+  auth_type: implicit
+  # 把这里改成你的 GitHub OAuth App 的 Client ID（步骤见 README「后台管理」）
+  app_id: 待填OAuthClientID
+
+local_backend: true
+
+media_folder: public/images
+public_folder: /images
+
+locale: zh_Hans
+
+collections:
+  - name: blog
+    label: 文章
+    label_singular: 文章
+    folder: src/content/blog
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: 摘要, name: description, widget: text }
+      - { label: 发布日期, name: pubDate, widget: datetime, format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: 标签, name: tags, widget: list, default: ["随笔"] }
+      - { label: 草稿, name: draft, widget: boolean, default: true }
+      - { label: 正文, name: body, widget: markdown }

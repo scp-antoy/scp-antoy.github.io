@@ -45,3 +45,25 @@ git push
 - 导航和页脚：`src/layouts/BaseLayout.astro`
 - 关于页：`src/pages/about.astro`
 - 全站样式：`src/styles/global.css`
+
+## 后台管理（可视化编辑器）
+
+后台地址：`/admin/`，可以像博客后台一样新建、编辑文章，保存后自动提交并触发部署。
+
+本地使用（不依赖线上能否访问）：
+
+```powershell
+npm.cmd run dev
+npm.cmd run admin
+```
+
+然后打开 http://localhost:4321/admin/ ，文章会直接保存到本地仓库，之后再 `git push` 发布。
+
+线上使用：访问 `https://scp-antoy.github.io/admin/`，首次需要创建 GitHub OAuth App：
+
+1. 打开 https://github.com/settings/developers ，点 New OAuth App
+2. Application name 填 `scp-antoy blog`
+3. Homepage URL 填 `https://scp-antoy.github.io/`
+4. Authorization callback URL 填 `https://scp-antoy.github.io/admin/`
+5. 创建后复制 Client ID，填到 `public/admin/config.yml` 的 `app_id`，然后推送
+6. 刷新后台页面，用 GitHub 账号登录即可
