@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { formatDate } from '../lib/formatDate';
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="scp-antoy 的博客" description="scp-antoy 的技术笔记与生活随笔">
+  <section class="intro">
+    <h1>scp-antoy 的博客</h1>
+    <p>记录技术学习与日常想法的地方。</p>
+  </section>
+
+  <section aria-label="最新文章">
+    {posts.length === 0 ? (
+      <p class="empty">还没有文章。</p>
+    ) : (
+      <ol class="post-list">
+        {posts.map((post) => (
+          <li>
+            <a class="post-card" href={`/blog/${post.id}/`}>
+              <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+              <ul class="tag-list" aria-label="标签">
+                {post.data.tags.map((tag) => (
+                  <li>{tag}</li>
+                ))}
+              </ul>
+            </a>
+          </li>
+        ))}
+      </ol>
+    )}
+  </section>
+</BaseLayout>

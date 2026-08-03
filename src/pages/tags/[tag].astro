@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../lib/formatDate';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const tags = new Set(posts.flatMap((post) => post.data.tags));
+  return [...tags].map((tag) => ({
+    params: { tag },
+    props: { tag },
+  }));
+}
+
+const { tag } = Astro.props;
+const posts = (await getCollection('blog', ({ data }) => !data.draft && data.tags.includes(tag))).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title={`${tag} 标签`} description={`标签「${tag}」下的文章`}>
+  <article class="post">
+    <header class="post-header">
+      <h1>{tag}</h1>
+    </header>
+    {posts.length === 0 ? (
+      <p class="empty">这个标签下还没有文章。</p>
+    ) : (
+      <ol class="post-list">
+        {posts.map((post) => (
+          <li>
+            <a class="post-card" href={`/blog/${post.id}/`}>
+              <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.description}</p>
+            </a>
+          </li>
+        ))}
+      </ol>
+    )}
+  </article>
+</BaseLayout>
