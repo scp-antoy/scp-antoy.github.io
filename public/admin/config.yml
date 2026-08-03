@@ -2,6 +2,9 @@ backend:
   name: github
   repo: scp-antoy/scp-antoy.github.io
   branch: main
+  # 线上后台登录暂不可用（github.io / workers.dev 当前网络无法访问）。
+  # 请使用本地后台：npm.cmd run dev + npm.cmd run admin → http://localhost:4321/admin/
+  # 在本地后台保存文章后，运行 npm.cmd run publish 即可发布到线上。
   base_url: https://blog-oauth.mm1013166192.workers.dev
 
 local_backend: true

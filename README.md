@@ -48,19 +48,19 @@ git push
 
 ## 后台管理（可视化编辑器）
 
-后台地址：`/admin/`，可以像博客后台一样新建、编辑文章，保存后自动提交并触发部署。
+后台地址：`/admin/`，可以在网页里像博客后台一样新建、编辑文章。
 
-本地使用（不依赖线上能否访问，推荐）：
+使用方法：
 
 ```powershell
-npm.cmd run dev
-npm.cmd run admin
+npm.cmd run dev       # 启动预览服务器
+npm.cmd run admin     # 启动本地后台代理
 ```
 
-然后打开 http://localhost:4321/admin/ ，文章会直接保存到本地仓库，之后再 `git push` 发布。
+打开 http://localhost:4321/admin/ ，在后台编辑保存文章（更改会写入本地仓库）。完成后运行：
 
-线上使用：访问 `https://scp-antoy.github.io/admin/` 用 GitHub 登录。登录需要先部署一个 OAuth 代理：
+```powershell
+npm.cmd run publish   # 一键提交并推送到 GitHub，触发线上部署
+```
 
-1. 按 `oauth-worker/README.md` 把 Worker 部署到 Cloudflare 免费版
-2. 把 Worker 域名填到 `public/admin/config.yml` 的 `backend.base_url`，推送
-3. 刷新后台页面，用 GitHub 账号登录
+> 线上后台访问暂不可用（gfw），本地后台完全不受影响。如需远端写稿，可直接在 GitHub 网页编辑 `src/content/blog/` 下的 Markdown 文件，保存后同样会自动发布。

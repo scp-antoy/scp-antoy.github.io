@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "admin": "decap-server",
+    "publish": "git add -A && git commit -m \"Update blog\" && git push",
     "astro": "astro"
   },
   "dependencies": {
