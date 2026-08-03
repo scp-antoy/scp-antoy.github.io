@@ -3,8 +3,7 @@ backend:
   repo: scp-antoy/scp-antoy.github.io
   branch: main
   auth_type: implicit
-  # 把这里改成你的 GitHub OAuth App 的 Client ID（步骤见 README「后台管理」）
-  app_id: 待填OAuthClientID
+  app_id: Ov23li1R9cdCPpjGQBRN
 
 local_backend: true
 
