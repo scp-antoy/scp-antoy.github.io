@@ -2,8 +2,8 @@ backend:
   name: github
   repo: scp-antoy/scp-antoy.github.io
   branch: main
-  auth_type: implicit
-  app_id: Ov23li1R9cdCPpjGQBRN
+  # 部署 oauth-worker 后，把这里改成你的 Worker 域名，例如 https://blog-oauth.xxx.workers.dev
+  base_url: 待填Worker地址
 
 local_backend: true
 
