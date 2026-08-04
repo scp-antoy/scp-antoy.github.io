@@ -4,7 +4,7 @@ description: 终于也是完成儿时的心愿 开个自己的网页记录下生
 pubDate: 2026-08-04
 tags:
   - 随笔
-draft: true
+draft: false
 ---
 也是用上ai生产力了 感谢deepseek 感谢codex 
 
